@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from task_manager import views
 
+
 urlpatterns = [
-    path('', views.HomePageView.as_view()),
+    path('', views.IndexPage.as_view(template_name="index.html")),
     # path('admin/', admin.site.urls),
 ]

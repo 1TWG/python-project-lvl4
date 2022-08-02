@@ -21,6 +21,29 @@ python-versions = ">=3.6"
 tzdata = ["tzdata"]
 
 [[package]]
+name = "beautifulsoup4"
+version = "4.11.1"
+description = "Screen-scraping library"
+category = "main"
+optional = false
+python-versions = ">=3.6.0"
+
+[package.dependencies]
+soupsieve = ">1.2"
+
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
+name = "bootstrap4"
+version = "0.1.0"
+description = "Bootstrap 4, packaged for Python."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "django"
 version = "4.0.6"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
@@ -39,6 +62,31 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-bootstrap4"
+version = "22.1"
+description = "Bootstrap 4 for Django"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+beautifulsoup4 = ">=4.8.0"
+Django = ">=2.2"
+
+[[package]]
+name = "flake8"
+version = "5.0.3"
+description = "the modular source code checker: pep8 pyflakes and co"
+category = "main"
+optional = false
+python-versions = ">=3.6.1"
+
+[package.dependencies]
+mccabe = ">=0.7.0,<0.8.0"
+pycodestyle = ">=2.9.0,<2.10.0"
+pyflakes = ">=2.5.0,<2.6.0"
+
+[[package]]
 name = "gunicorn"
 version = "20.1.0"
 description = "WSGI HTTP Server for UNIX"
@@ -51,6 +99,38 @@ eventlet = ["eventlet (>=0.24.1)"]
 gevent = ["gevent (>=1.4.0)"]
 setproctitle = ["setproctitle"]
 tornado = ["tornado (>=0.2)"]
+
+[[package]]
+name = "mccabe"
+version = "0.7.0"
+description = "McCabe checker, plugin for flake8"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
+name = "pycodestyle"
+version = "2.9.0"
+description = "Python style guide checker"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
+name = "pyflakes"
+version = "2.5.0"
+description = "passive checker of Python programs"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
+name = "soupsieve"
+version = "2.3.2.post1"
+description = "A modern CSS selector implementation for Beautiful Soup."
+category = "main"
+optional = false
+python-versions = ">=3.6"
 
 [[package]]
 name = "sqlparse"
@@ -71,12 +151,20 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "4e5e8a227730b06b452986c9a0078e55a589d9e42969c1267ffde2e2ae0882f6"
+content-hash = "531e9dc81a5479bdcb296cee7db105c8217e2532f19620856fa5fce1b19bf958"
 
 [metadata.files]
 asgiref = []
 "backports.zoneinfo" = []
+beautifulsoup4 = []
+bootstrap4 = []
 django = []
+django-bootstrap4 = []
+flake8 = []
 gunicorn = []
+mccabe = []
+pycodestyle = []
+pyflakes = []
+soupsieve = []
 sqlparse = []
 tzdata = []

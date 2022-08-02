@@ -31,3 +31,11 @@ test-coverage:
 
 deploy:
 	git push heroku main
+
+locate:
+	poetry run django-admin makemessages -l ru
+
+compile:
+	poetry run django-admin compilemessages
+
+
