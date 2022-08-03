@@ -20,6 +20,32 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/users/">Пользователи</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/statuses/">Статусы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/labels/">Метки</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tasks/">Задачи</a>
+            </li>
+
+        </ul>
+        <ul class="navbar-nav">
+
+            <form action="/logout/" method="post">
+               <input class="btn nav-link" type="submit" value="Выход">
+                {% csrf_token %}
+            </form>
+
+        </ul>
+        {% else %}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="/users/">{% translate 'Users' %}</a>
@@ -35,26 +61,16 @@
                 <a class="nav-link" href="/users/create/">{% translate 'Sign up' %}</a>
             </li>
 
+
         </ul>
+        {% endif %}
     </div>
 </nav>
 <div class="container wrapper flex-grow-1">
 
-
-    <h1 class="my-4">
-
-
-    </h1>
-
     <h1 class="my-4"></h1>
-    <div class="card">
-        <div class="card-body p-5 bg-light">
-            <div class="display-4">{% translate 'Hello from Hexlet!' %}</div>
-            <p class="lead">{% translate 'Practical programming courses' %}</p>
-            <hr>
-            <a class="btn btn-primary btn-lg" href="https://ru.hexlet.io">{% translate 'Learn more' %}</a>
-        </div>
-    </div>
+    {% block content %}
+    {% endblock %}
 
 </div>
 <footer>

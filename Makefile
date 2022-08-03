@@ -38,4 +38,5 @@ locate:
 compile:
 	poetry run django-admin compilemessages
 
-
+shell:
+	poetry run python manage.py shell
