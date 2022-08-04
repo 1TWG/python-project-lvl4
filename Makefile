@@ -19,7 +19,7 @@ check:
 	poetry check
 
 lint:
-	poetry run flake8 .
+	poetry run flake8 task_manager
 
 test:
 	poetry run python manage.py test
