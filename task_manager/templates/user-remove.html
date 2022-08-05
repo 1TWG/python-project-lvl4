@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load i18n %}
+{% block content %}
+<h1 class="my-4">
+    Удаление пользователя
+</h1>
+
+<form method="post" action=".">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    {% buttons submit='Да, удалить'%}
+    {% endbuttons %}
+</form>
+{% endblock %}

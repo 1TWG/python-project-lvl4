@@ -19,7 +19,8 @@ from task_manager import views
 
 urlpatterns = [
     path('', views.IndexPage.as_view(), name='index'),
-    path('', include('django.contrib.auth.urls'), name='login'),
+    path('login/', views.LogIn.as_view(), name='login'),
+    path('logout/', views.LogOut.as_view()),
     path('users/', include('task_manager.users.urls')),
     path('admin/', admin.site.urls),
 ]

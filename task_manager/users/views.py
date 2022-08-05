@@ -10,6 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import UpdateView
 from django.shortcuts import redirect
+from django.views.generic.edit import DeleteView
+from django.contrib import messages
 
 
 class UsersPage(TemplateView):
@@ -37,9 +39,34 @@ class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, U
     form_class = UserForm
     success_url = reverse_lazy('login')
     success_message = 'Пользователь успешно изменен'
+    permission_denied_message = 'Nope'
 
     def test_func(self):
-        return self.request.user.id == 1
+        if not self.request.user.id == self.kwargs.get('pk'):
+            messages.error(
+                self.request,
+                'У вас нет прав для изменения другого пользователя.'
+            )
+        return self.request.user.id == self.kwargs.get('pk')
+
+    def handle_no_permission(self):
+        return redirect('/login')
+
+
+class UserRemove(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):  # noqa: E501
+    # login_url = '/login/'
+    template_name = 'user-remove.html'
+    model = get_user_model()
+    success_url = reverse_lazy('users')
+    success_message = 'Пользователь успешно удален'
+
+    def test_func(self):
+        if not self.request.user.id == self.kwargs.get('pk'):
+            messages.error(
+                self.request,
+                'У вас нет прав для изменения другого пользователя.'
+            )
+        return self.request.user.id == self.kwargs.get('pk')
 
     def handle_no_permission(self):
         return redirect('/login')

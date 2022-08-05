@@ -1,5 +1,8 @@
 from django.views.generic.base import TemplateView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import redirect
 
 
 class IndexPage(TemplateView):
@@ -7,6 +10,16 @@ class IndexPage(TemplateView):
     template_name = 'index.html'
 
 
-@login_required
-def my_view(request):
+class LogIn(UserPassesTestMixin, LoginView):
+    "Log In page."
+
+    def test_func(self):
+        return not self.request.user.is_authenticated
+
+    def handle_no_permission(self):
+        return redirect('/users')
+
+
+class LogOut(LogoutView):
+    "Log Out page."
     pass
