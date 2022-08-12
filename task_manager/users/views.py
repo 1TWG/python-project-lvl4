@@ -33,13 +33,11 @@ class UserCreate(SuccessMessageMixin, CreateView):
 
 
 class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):  # noqa: E501
-    # login_url = '/login/'
     template_name = 'user-update.html'
     model = get_user_model()
     form_class = UserForm
     success_url = reverse_lazy('login')
     success_message = 'Пользователь успешно изменен'
-    permission_denied_message = 'Nope'
 
     def test_func(self):
         if not self.request.user.id == self.kwargs.get('pk'):
