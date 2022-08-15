@@ -9,5 +9,34 @@
 
 <a class="nav-link" href="/tasks/create/">Создать задачу</a>
 
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Статус</th>
+        <th>Автор</th>
+        <th>Исполнитель</th>
+        <th>Дата создания</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
 
-{% endblock %}
+    {% for task in tasks %}
+    <tr>
+        <td>{{task.id}}</td>
+        <td><a href="/tasks/{{task.id}}">{{task.name}}</a></td>
+        <td>{{task.status}}</td>
+        <td>{{task.creator}}</td>
+        <td>{{task.executor}}</td>
+        <td>{{task.timestamp}}</td>
+        <td>
+            <a href="/tasks/{{task.id}}/update/">Изменить</a>
+            <br>
+            <a href="/stasks/{{task.id}}/delete/">Удалить</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+    {% endblock %}

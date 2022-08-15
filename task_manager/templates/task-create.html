@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load i18n %}
+{% block content %}
+<h1 class="my-4">
+    Создать задачу
+</h1>
+<form method="post" action=".">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons submit='Создать'%}
+    {% endbuttons %}
+</form>
+{% endblock %}

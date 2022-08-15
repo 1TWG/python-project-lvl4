@@ -5,12 +5,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import UpdateView
 from django.views.generic.edit import DeleteView
 from django.contrib import messages
 from django.shortcuts import redirect
-from django.utils.translation import gettext_lazy as _
 
 
 # Create your views here.
@@ -25,7 +23,7 @@ class LabelsPage(LoginRequiredMixin, TemplateView):
             'labels': Labels.objects.all(),
         })
 
-    def test_func(self):
+    def test_func(self, request):
         if not request.user.is_authenticated:
             messages.error(
                 self.request,
