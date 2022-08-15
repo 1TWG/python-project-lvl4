@@ -14,11 +14,10 @@ from django.utils.translation import gettext_lazy as _
 
 
 # Create your views here.
-
-class StatusesPage(LoginRequiredMixin, TemplateView):
+class TasksPage(LoginRequiredMixin, TemplateView):
     "Users list page."
     # login_url = '/login/'
-    template_name = 'statuses.html'
+    template_name = 'tasks.html'
 
     def get(self, request):
         return render(request, self.template_name, context={
@@ -37,27 +36,9 @@ class StatusesPage(LoginRequiredMixin, TemplateView):
         return redirect('/login')
 
 
-class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class TaskCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     login_url = '/login/'
-    template_name = 'status-create.html'
+    template_name = 'task-create.html'
     model = Statuses
-    success_url = reverse_lazy('statuses')
-    success_message = 'Статус успешно создан'
-    fields = ['name']
-
-
-class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):  # noqa: E501
-    login_url = '/login/'
-    template_name = 'status-update.html'
-    model = Statuses
-    success_url = reverse_lazy('statuses')
-    success_message = 'Статус успешно изменён'
-    fields = ['name']
-
-
-class StatusRemove(LoginRequiredMixin, SuccessMessageMixin, DeleteView):  # noqa: E501
-    login_url = '/login/'
-    template_name = 'status-remove.html'
-    model = Statuses
-    success_url = reverse_lazy('statuses')
-    success_message = 'Статус успешно удален'
+    success_url = reverse_lazy('tasks')
+    success_message = 'Задача успешно создана'
