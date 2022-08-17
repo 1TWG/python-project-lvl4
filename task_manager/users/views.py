@@ -28,7 +28,7 @@ class UserCreate(SuccessMessageMixin, CreateView):
     template_name = 'create.html'
     model = get_user_model()
     form_class = UserForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('user-login')
     success_message = 'Пользователь успешно зарегистрирован'
 
 
@@ -36,7 +36,7 @@ class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, U
     template_name = 'user-update.html'
     model = get_user_model()
     form_class = UserForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('user-login')
     success_message = 'Пользователь успешно изменен'
 
     def test_func(self):
