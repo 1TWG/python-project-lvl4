@@ -48,7 +48,7 @@ class UserTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_get_users_remove(self):
-        """Tests GET /users/<int:pk>/update/"""
+        """Tests GET /users/<int:pk>/remove/"""
         user = get_user_model().objects.first()
         self.client.force_login(get_user_model().objects.get(pk=user.id))
         response = self.client.get(reverse('user-remove', args=(user.id,)))
