@@ -7,8 +7,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
 from django.views.generic.edit import DeleteView
-from django.contrib import messages
-from django.shortcuts import redirect
 from django_filters.views import FilterView
 from task_manager.tasks.filter import TaskFilter
 

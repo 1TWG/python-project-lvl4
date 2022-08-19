@@ -82,7 +82,6 @@ class TasksTest(TestCase):
         self.assertEqual(task.status.id, task_edit_data['status'])
         self.assertEqual(task.executor.id, task_edit_data['executor'])
 
-
     def test_post_task_delete(self):
         """Tests POST /tasks/<int:pk>/delete"""
         user = get_user_model().objects.first()
