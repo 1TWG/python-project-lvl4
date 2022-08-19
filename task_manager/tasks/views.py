@@ -9,13 +9,16 @@ from django.views.generic import UpdateView
 from django.views.generic.edit import DeleteView
 from django.contrib import messages
 from django.shortcuts import redirect
+from django_filters.views import FilterView
+from task_manager.tasks.filter import TaskFilter
 
 
 # Create your views here.
-class TasksPage(LoginRequiredMixin, TemplateView):
-    "Users list page."
-    # login_url = '/login/'
+class TasksPage(LoginRequiredMixin, FilterView):
+
+    model = Tasks
     template_name = 'tasks.html'
+    filterset_class = TaskFilter
 
     def get(self, request):
         return render(request, self.template_name, context={
