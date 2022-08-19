@@ -15,26 +15,9 @@ from task_manager.tasks.filter import TaskFilter
 
 # Create your views here.
 class TasksPage(LoginRequiredMixin, FilterView):
-
     model = Tasks
     template_name = 'tasks.html'
     filterset_class = TaskFilter
-
-    def get(self, request):
-        return render(request, self.template_name, context={
-            'tasks': Tasks.objects.all(),
-        })
-
-    def test_func(self, request):
-        if not request.user.is_authenticated:
-            messages.error(
-                self.request,
-                'Авторизируйтесь'
-            )
-        return request.user.is_authenticated
-
-    def handle_no_permission(self):
-        return redirect('/login')
 
 
 class TaskCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
