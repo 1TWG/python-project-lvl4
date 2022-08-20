@@ -47,7 +47,7 @@ class TaskUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):  # noqa: 
     template_name = 'task-update.html'
     model = Tasks
     success_url = reverse_lazy('tasks')
-    success_message = 'Задача успешно изменёна'
+    success_message = 'Задача успешно изменена'
     fields = ['name', 'description', 'status', 'executor', 'labels']
 
 

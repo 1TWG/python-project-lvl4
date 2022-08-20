@@ -58,4 +58,4 @@ class StatusRemove(LoginRequiredMixin, SuccessMessageMixin, DeleteView):  # noqa
     template_name = 'status-remove.html'
     model = Statuses
     success_url = reverse_lazy('statuses')
-    success_message = 'Статус успешно удален'
+    success_message = 'Статус успешно удалён'

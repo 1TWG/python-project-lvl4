@@ -49,7 +49,7 @@ class LabelUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):  # noqa:
     template_name = 'label-update.html'
     model = Labels
     success_url = reverse_lazy('labels')
-    success_message = 'Метка успешно изменёна'
+    success_message = 'Метка успешно изменена'
     fields = ['name']
 
 
@@ -58,4 +58,4 @@ class LabelRemove(LoginRequiredMixin, SuccessMessageMixin, DeleteView):  # noqa:
     template_name = 'label-remove.html'
     model = Labels
     success_url = reverse_lazy('labels')
-    success_message = 'Метка успешно удаленв'
+    success_message = 'Метка успешно удалена'
