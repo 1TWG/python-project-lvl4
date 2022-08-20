@@ -36,7 +36,7 @@ class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, U
     template_name = 'user-update.html'
     model = get_user_model()
     form_class = UserForm
-    success_url = reverse_lazy('user-login')
+    success_url = reverse_lazy('users')
     success_message = 'Пользователь успешно изменен'
 
     def test_func(self):
