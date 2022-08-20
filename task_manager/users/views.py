@@ -37,7 +37,7 @@ class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, U
     model = get_user_model()
     form_class = UserForm
     success_url = reverse_lazy('users')
-    success_message = 'Пользователь успешно изменен'
+    success_message = 'Пользователь успешно изменён'
 
     def test_func(self):
         if not self.request.user.id == self.kwargs.get('pk'):
