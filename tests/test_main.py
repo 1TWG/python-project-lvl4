@@ -7,5 +7,3 @@ class UserTest(TestCase):
         """Tests GET /users/create/"""
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
-
-
