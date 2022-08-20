@@ -38,7 +38,7 @@ class TaskPreview(LoginRequiredMixin, SuccessMessageMixin, TemplateView):
 
     def get(self, request, pk):
         return render(request, self.template_name, context={
-            'task': Tasks.objects.filter(id='1')[0],
+            'task': Tasks.objects.filter(id=pk)[0],
         })
 
 
