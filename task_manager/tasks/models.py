@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from task_manager.users.models import User
 from task_manager.statuses.models import Statuses
 from task_manager.labels.models import Labels
 
@@ -9,13 +9,13 @@ class Tasks(models.Model):
     name = models.CharField('Имя', max_length=100, unique=True)
     description = models.TextField(blank=True, verbose_name='Описание')
     creator = models.ForeignKey(
-        get_user_model(),
+        User,
         verbose_name='Автор',
         on_delete=models.PROTECT,
         related_name='creator'
     )
     executor = models.ForeignKey(
-        get_user_model(),
+        User,
         verbose_name='Исполнитель',
         blank=True,
         null=True,
@@ -25,7 +25,8 @@ class Tasks(models.Model):
     status = models.ForeignKey(
         Statuses,
         verbose_name='Статус',
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        related_name='status'
     )
     labels = models.ManyToManyField(
         Labels,

@@ -1,11 +1,10 @@
 from django.views.generic.base import TemplateView
 from django.shortcuts import render
-from django.contrib.auth.models import User
+from task_manager.users.models import User
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView
 from task_manager.users.forms import UserForm
-from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import UpdateView
@@ -26,7 +25,7 @@ class UsersPage(TemplateView):
 
 class UserCreate(SuccessMessageMixin, CreateView):
     template_name = 'create.html'
-    model = get_user_model()
+    model = User
     form_class = UserForm
     success_url = reverse_lazy('user-login')
     success_message = 'Пользователь успешно зарегистрирован'
@@ -34,7 +33,7 @@ class UserCreate(SuccessMessageMixin, CreateView):
 
 class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):  # noqa: E501
     template_name = 'user-update.html'
-    model = get_user_model()
+    model = User
     form_class = UserForm
     success_url = reverse_lazy('users')
     success_message = 'Пользователь успешно изменён'
@@ -54,7 +53,7 @@ class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, U
 class UserRemove(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):  # noqa: E501
     # login_url = '/login/'
     template_name = 'user-remove.html'
-    model = get_user_model()
+    model = User
     success_url = reverse_lazy('users')
     success_message = 'Пользователь успешно удалён'
 

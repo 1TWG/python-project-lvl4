@@ -1,6 +1,6 @@
 [
 {
-    "model": "auth.user",
+    "model": "users.user",
     "pk": 13,
     "fields": {
         "password": "test_password",

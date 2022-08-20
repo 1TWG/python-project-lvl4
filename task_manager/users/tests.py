@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.contrib.auth import get_user_model
+from task_manager.users.models import User
 from django.urls import reverse
 
 
@@ -33,7 +33,7 @@ class UserTest(TestCase):
 
         response = self.client.post(reverse('user-create'), user_to_create)
         self.assertRedirects(response, reverse('user-login'))
-        user = get_user_model().objects.get(
+        user = User.objects.get(
             username=user_to_create['username']
         )
         self.assertEqual(user.first_name, user_to_create['first_name'])
@@ -42,14 +42,14 @@ class UserTest(TestCase):
 
     def test_get_users_update(self):
         """Tests GET /users/<int:pk>/update/"""
-        user = get_user_model().objects.first()
-        self.client.force_login(get_user_model().objects.get(pk=user.id))
+        user = User.objects.first()
+        self.client.force_login(User.objects.get(pk=user.id))
         response = self.client.get(reverse('user-update', args=(user.id,)))
         self.assertEqual(response.status_code, 200)
 
     def test_get_users_remove(self):
         """Tests GET /users/<int:pk>/remove/"""
-        user = get_user_model().objects.first()
-        self.client.force_login(get_user_model().objects.get(pk=user.id))
+        user = User.objects.first()
+        self.client.force_login(User.objects.get(pk=user.id))
         response = self.client.get(reverse('user-remove', args=(user.id,)))
         self.assertEqual(response.status_code, 200)
