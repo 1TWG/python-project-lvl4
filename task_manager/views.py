@@ -4,6 +4,7 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import redirect
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 
 
 class IndexPage(TemplateView):
@@ -24,4 +25,7 @@ class LogIn(UserPassesTestMixin, SuccessMessageMixin, LoginView):
 
 class LogOut(LogoutView):
     "Log Out page."
-    pass
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.info(request, 'Вы разлогинены')
+        return super().dispatch(request, *args, **kwargs)
