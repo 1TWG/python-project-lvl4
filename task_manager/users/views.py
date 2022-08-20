@@ -56,7 +56,7 @@ class UserRemove(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, D
     template_name = 'user-remove.html'
     model = get_user_model()
     success_url = reverse_lazy('users')
-    success_message = 'Пользователь успешно удален'
+    success_message = 'Пользователь успешно удалён'
 
     def test_func(self):
         if not self.request.user.id == self.kwargs.get('pk'):
