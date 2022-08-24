@@ -11,11 +11,8 @@ from django.contrib import messages
 from django.shortcuts import redirect
 
 
-# Create your views here.
-
 class LabelsPage(LoginRequiredMixin, TemplateView):
-    "Users list page."
-    # login_url = '/login/'
+    "Labels list page."
     template_name = 'labels.html'
 
     def get(self, request):
@@ -23,19 +20,12 @@ class LabelsPage(LoginRequiredMixin, TemplateView):
             'labels': Labels.objects.all(),
         })
 
-    def test_func(self, request):
-        if not request.user.is_authenticated:
-            messages.error(
-                self.request,
-                'Авторизируйтесь'
-            )
-        return request.user.is_authenticated
-
     def handle_no_permission(self):
         return redirect('/login')
 
 
 class LabelCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    "Label create page."
     login_url = '/login/'
     template_name = 'label-create.html'
     model = Labels
@@ -45,6 +35,7 @@ class LabelCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class LabelUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):  # noqa: E501
+    "Label update page."
     login_url = '/login/'
     template_name = 'label-update.html'
     model = Labels
@@ -54,6 +45,7 @@ class LabelUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):  # noqa:
 
 
 class LabelRemove(LoginRequiredMixin, SuccessMessageMixin, DeleteView):  # noqa: E501
+    "Label remove page."
     login_url = '/login/'
     template_name = 'label-remove.html'
     model = Labels

@@ -11,11 +11,8 @@ from django.contrib import messages
 from django.shortcuts import redirect
 
 
-# Create your views here.
-
 class StatusesPage(LoginRequiredMixin, TemplateView):
-    "Users list page."
-    # login_url = '/login/'
+    "Statuses list page."
     template_name = 'statuses.html'
 
     def get(self, request):
@@ -23,19 +20,12 @@ class StatusesPage(LoginRequiredMixin, TemplateView):
             'statuses': Statuses.objects.all(),
         })
 
-    def test_func(self, request):
-        if not request.user.is_authenticated:
-            messages.error(
-                self.request,
-                'Авторизируйтесь'
-            )
-        return request.user.is_authenticated
-
     def handle_no_permission(self):
         return redirect('/login')
 
 
 class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    "Statuse create page."
     login_url = '/login/'
     template_name = 'status-create.html'
     model = Statuses
@@ -45,6 +35,7 @@ class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):  # noqa: E501
+    "Statuse update page."
     login_url = '/login/'
     template_name = 'status-update.html'
     model = Statuses
@@ -54,6 +45,7 @@ class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):  # noqa
 
 
 class StatusRemove(LoginRequiredMixin, SuccessMessageMixin, DeleteView):  # noqa: E501
+    "Statuse remove page."
     login_url = '/login/'
     template_name = 'status-remove.html'
     model = Statuses

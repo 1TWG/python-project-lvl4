@@ -24,6 +24,7 @@ class UsersPage(TemplateView):
 
 
 class UserCreate(SuccessMessageMixin, CreateView):
+    "User create page."
     template_name = 'create.html'
     model = User
     form_class = UserForm
@@ -32,6 +33,7 @@ class UserCreate(SuccessMessageMixin, CreateView):
 
 
 class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):  # noqa: E501
+    "User update page."
     template_name = 'user-update.html'
     model = User
     form_class = UserForm
@@ -51,7 +53,7 @@ class UserUpdate(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, U
 
 
 class UserRemove(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):  # noqa: E501
-    # login_url = '/login/'
+    "User remove page."
     template_name = 'user-remove.html'
     model = User
     success_url = reverse_lazy('users')
